@@ -4,5 +4,5 @@ docker run -it --rm \
     --network host \
     -v "$PWD":/usr/src/myapp \
     -w /usr/src/myapp \
-    niden-mike \
+    zephir-docs \
     /bin/bash
