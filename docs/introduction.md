@@ -8,6 +8,10 @@ The name Zephir is a contraction of the words Z(end) E(ngine)/PH(P)/I(nte)r(medi
 
 ## Features
 
+!!! info "NOTE"
+
+    This version supports PHP 8.0, 8.1, 8.2 and 8.3
+
 Zephir's main features include:
 
 | Feature            | Description                                           |
