@@ -1,8 +1,0 @@
-#!/bin/bash
-
-docker run -it --rm \
-    --network host \
-    -v "$PWD":/usr/src/myapp \
-    -w /usr/src/myapp \
-    zephir-docs \
-    /bin/bash
