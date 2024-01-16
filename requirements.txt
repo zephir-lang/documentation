@@ -1,0 +1,7 @@
+mkdocs
+mkdocs-include
+mkdocs-material
+mkdocs-material-extensions
+mkdocs-minify-plugin
+mkdocs-redirects
+mike
