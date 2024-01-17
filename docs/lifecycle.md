@@ -1,7 +1,6 @@
 # Lifecycle hooks
-PHP provides several lifecycle events, which extensions can use to perform common initialization or shutdown tasks. Normally, Zephir's own hooks into these events will cover all the setup and tear down your extension will need, but if you find that you need to do something more, there are a few options you can use to pass your own code into these same hooks.
 
-Consider the following diagram:
+PHP extensions leverage lifecycle events for common initialization or shutdown tasks. Zephir integrates with these events through hooks, primarily handled in the config.json file. The diagram illustrates the PHP Process/Request Lifecycle, depicting four types of lifecycle hooks: `globals`, `initializers`, `destructors`, and `info`. This chapter focuses on `initializers` and `destructors`.
 
 ![The PHP Process/Request Lifecycle](assets/images/content/lifecycle.png)
 
@@ -10,7 +9,8 @@ Lifecycle hooks are registered in the `config.json` file. As you can see in the 
 Each hook in the `config.json` file is an array of objects, which themselves are essentially `include`/`code` pairs. The `include` value will pull in a given C header file, if it hasn't been already, so that the `code` will have access to its contents. The `code` value is the logic run by the hook itself, and while you can technically put any valid C in here, it is **_strongly_** recommended to put logic longer than one or two lines into a separate C source file (such as the one pulled in along with your `include`d header file), and use a single-line function call here.
 
 ## initializers
-The `initializers` block looks something like this:
+
+The `initializers` block in the `config.json` file includes logic for initialization events. Three key events are targeted: `globals` for global variable space setup, module for extension-specific initialization, and `request` for per-request setup.
 
 ```json
 {
@@ -43,10 +43,11 @@ The `initializers` block looks something like this:
 }
 ```
 
-This block is responsible for defining hooks into the Init events shown in the diagram above. There are three of these: `globals` for setting up the global variable space, `module` for setting up anything the extension itself needs to function, and `request` for setting up the extension to handle a single request.
+This configuration facilitates the execution of custom C code during the initialization process for various scopes.
 
 ## destructors
-The `destructors` block looks something like this:
+
+The `destructors` block handles cleanup logic during shutdown events. Four events are addressed: `request` for finalizing data before sending a response, `post-request` for cleanup after sending a response, `module` for extension-specific cleanup, and `globals` for cleaning up the global variable space.
 
 ```json
 {
@@ -85,7 +86,7 @@ The `destructors` block looks something like this:
 }
 ```
 
-Much as the `initializers` block is responsible for defining hooks into the Init events shown in the diagram above, _this_ block is responsible for defining hooks into the Shutdown events. There are four of these: `request` for finalizing any data before a response is sent to the client, `post-request` for cleaning up after a response has been sent, `module` for cleaning up after the extension itself before the PHP process shuts down, and `globals` for cleaning up the global variable space.
+This configuration enables the execution of custom C code during various shutdown events, ensuring proper cleanup and finalization processes.
 
 [globals]: globals.md
 [info]: phpinfo.md

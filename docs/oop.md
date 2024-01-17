@@ -1,14 +1,10 @@
----
-layout: default
-language: 'en'
-version: '0.12'
----
-
 # Classes and Objects
-Zephir promotes object-oriented programming. This is why you can only export methods and classes in extensions. Also you will see that, most of the time, runtime errors raise exceptions instead of fatal errors or warnings.
+
+Zephir encourages object-oriented programming, allowing the export of methods and classes in extensions. The class structure in Zephir is akin to PHP, supporting various modifiers and features.
 
 ## Classes
-Every Zephir file must implement a class or an interface (and just one). A class structure is very similar to a PHP class:
+
+In Zephir, each file must implement a class or interface. A basic class structure resembles PHP:
 
 ```zep
 namespace Test;
@@ -23,7 +19,8 @@ class MyClass
 ```
 
 ### Class Modifiers
-The following class modifiers are supported:
+
+Zephir supports class modifiers like `final` and `abstract`:
 
 `final`: If a class has this modifier it cannot be extended:
 
@@ -37,12 +34,6 @@ final class MyClass
 {
 
 }
-```
-
-`abstract`: If a class has this modifier it cannot be instantiated:
-
-```zep
-namespace Test;
 
 /**
  * This class cannot be instantiated
@@ -54,9 +45,8 @@ abstract class MyClass
 ```
 
 ### Implementing Interfaces
-Zephir classes can implement any number of interfaces, provided that these interfaces are `visible` for the class to use. However, there are times that the Zephir class (and subsequently extension) might require to implement an interface that is built in a different extension.
 
-If we want to implement the `MiddlewareInterface` from the `PSR` extension, we will need to create a `stub` interface:
+Zephir classes can implement interfaces, even those from different extensions. A "stub" interface is created to implement interfaces from other extensions:
 
 ```zep
 // middlewareinterfaceex.zep
@@ -90,9 +80,12 @@ public function shouldExtendMiddlewareInterface()
 }
 ```
 
-**NOTE** It is the developer's responsibility to ensure that all external references are present before the extension is loaded. So for the example above, one has to load the [PSR](https://pecl.php.net/package/psr) extension **first** before the Zephir built extension is loaded.
+!!! warning "NOTE"
+
+    It is the developer's responsibility to ensure that all external references are present before the extension is loaded. So for the example above, one has to load the [PSR][psr] extension **first** before the Zephir built extension is loaded.
 
 ## Implementing Methods
+
 The `function` keyword introduces a method. Methods implement the usual visibility modifiers available in PHP. Explicitly setting a visibility modifier is mandatory in Zephir:
 
 ```zep
@@ -169,6 +162,7 @@ class MyClass
 ```
 
 ### Optional nullable parameters
+
 Zephir ensures that the value of a variable remains of the type the variable was declared as. This makes Zephir convert the `null` value to the closest approximate value:
 
 ```zep
@@ -194,16 +188,19 @@ public function foo(array a = null)
 ```
 
 ### Supported Visibilities
+
 * Public: Methods marked as `public` are exported to the PHP extension; this means that public methods are visible to the PHP code as well to the extension itself.
 * Protected: Methods marked as `protected` are exported to the PHP extension; this means that protected methods are visible to the PHP code as well to the extension itself. However, protected methods can only be called in the scope of the class or in classes that inherit them.
 * Private: Methods marked as `private` are not exported to the PHP extension; this means that private methods are only visible to the class where they're implemented.
 
 ### Supported Modifiers
+
 * `static`: Methods with this modifier can only be called in a static context (from the class, not an object).
 * `final`: If a method has this modifier it cannot be overriden.
 * `deprecated`: Methods marked as `deprecated` throw an `E_DEPRECATED` error when they are called.
 
 ### Getter/Setter shortcuts
+
 Like in C#, you can use `get`/`set`/`toString` shortcuts in Zephir. This feature allows you to easily write setters and getters for properties, without explicitly implementing those methods as such.
 
 For example, without shortcuts we would need code like:
@@ -264,6 +261,7 @@ class MyClass
 When the code is compiled, those methods are exported as real methods, but you don't have to write them manually.
 
 ### Return Type Hints
+
 Methods in classes and interfaces can have "return type hints". These will provide useful extra information to the compiler to inform you about errors in your application. Consider the following example:
 
 ```zep
@@ -321,6 +319,7 @@ class MyClass
 ```
 
 ### Return Type: Void
+
 Methods can also be marked as `void`. This means that a method is not allowed to return any data:
 
 ```zep
@@ -338,7 +337,8 @@ myDb->execute("SELECT * FROM robots");
 ```
 
 ### Strict/Flexible Parameter Data-Types
-In Zephir, you can specify the data type of each parameter of a method. By default, these data-types are flexible; this means that if a value with a wrong (but compatible) data-type is passed, Zephir will try to transparently convert it to the expected one:
+
+Zephir allows specifying parameter data types, and by default, they are flexible. However, developers can set specific behavior by using strict data types:
 
 ```zep
 public function filterText(string text, boolean escape=false)
@@ -380,10 +380,11 @@ $o->filterText("some text", true);    // OK
 $o->filterText(array(1, 2, 3), true); // FAIL
 ```
 
-By specifying what parameters are strict and what can be flexible, a developer can set the specific behavior he/she really wants.
+By specifying which parameters are strict and what can be flexible, a developer can set the specific behavior he/she wants.
 
 ### Read-Only Parameters
-Using the keyword `const` you can mark parameters as read-only, this helps to respect [const-correctness](https://en.wikipedia.org/wiki/Const_(computer_programming)). Parameters marked with this attribute cannot be modified inside the
+
+Using the keyword `const` you can mark parameters as read-only, this helps to respect [const-correctness][const-correctness]. Parameters marked with this attribute cannot be modified inside the
 method:
 
 ```zep
@@ -403,6 +404,7 @@ class MyClass
 When a parameter is declared as read-only, the compiler can make safe assumptions and perform further optimizations over these variables.
 
 ## Implementing Properties
+
 Class member variables are called "properties". By default, they act the same as PHP properties. Properties are exported to the PHP extension, and are visible from PHP code. Properties implement the usual visibility modifiers available in PHP, and explicitly setting a visibility modifier is mandatory in Zephir:
 
 ```zep
@@ -457,6 +459,7 @@ class MyClass
 ```
 
 ## Updating Properties
+
 Properties can be updated by accessing them using the `->` operator:
 
 ```zep
@@ -486,6 +489,7 @@ let this->{someProperty} = 100;
 ```
 
 ## Reading Properties
+
 Properties can be read by accessing them using the `->` operator:
 
 ```zep
@@ -504,6 +508,7 @@ echo this->{someProperty}
 ```
 
 ## Class Constants
+
 Classes may contain class constants that remain the same and unchangeable once the extension is compiled. Class constants are exported to the PHP extension, allowing them to be used from PHP.
 
 ```zep
@@ -535,6 +540,7 @@ class MyClass
 ```
 
 ## Calling Methods
+
 Methods can be called using the object operator `->` as in PHP:
 
 ```zep
@@ -595,6 +601,7 @@ class MyClass
 ```
 
 ### Parameters by Name
+
 Zephir supports calling method parameters by name or keyword arguments. Named parameters can be useful if you want to pass parameters in an arbitrary order, document the meaning of parameters, or specify parameters in a more elegant way.
 
 Consider the following example. A class called `Image` has a method that receives four parameters:
@@ -633,3 +640,6 @@ When the compiler (at compile time) does not know the correct order of these par
 let i = new {someClass}();
 i->chop(y: 30, x: 20);
 ```
+
+[psr]: https://pecl.php.net/package/psr
+[const-correctness]: https://en.wikipedia.org/wiki/Const_(computer_programming)

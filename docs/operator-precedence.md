@@ -1,40 +1,12 @@
----
-layout: default
-language: 'en'
-version: '0.12'
----
 # Operator Precedence
-**Operator precedence** determines how operators are parsed. Operators with
-higher precedence become the operands of operators with lower precedence. For
-example, in the expression `1 + 5 * 3`, the answer is 16 and not 18 because
-the multiplication (`*`) operator has a higher precedence than the addition
-(`+`) operator. Parentheses may be used to force precedence, if necessary.
-For instance: `(1 + 5) * 3` evaluates to 18.
 
-<a name='operator-precedence-associativity'></a>
-## Associativity
-When operators have equal precedence their **associativity** determines how the
-operators are grouped. For example `-` is _left-associative_, so `1 - 2 - 3` is
-grouped as `(1 - 2) - 3` and evaluates to `-4`. `=` on the other hand is
-_right-associative_, so `let a = b = c` is grouped as `let a = (b = c)`.
+**Operator precedence** is crucial in determining how expressions are parsed and evaluated. It dictates the order in which operators are applied when multiple operators are present in an expression. For example, in the expression `1 + 5 * 3`, the answer is 16 and not 18 because the multiplication (`*`) operator has a higher precedence than the addition (`+`) operator. Parentheses may be used to force precedence, if necessary. For instance: `(1 + 5) * 3` evaluates to 18.
 
-Operators of equal precedence that are _non-associative_ cannot be used next to
-one another. For example:  
-```zep
-new new Foo();
-```
-is illegal in Zephir, because the `new` is non-associative. At the moment, `new`
-is the only non-associative operator in Zephir.
+Here's a breakdown of operator precedence in Zephir:
 
-Use of parentheses, even when not strictly necessary, can often increase
-readability of the code, by making grouping explicit, rather than relying on
-the implicit operator precedence and associativity.
-
-<a name='operator-precedence-table'></a>
 ## Precedence Table
-The following table lists the operators in order of precedence, with the
-highest-precedence ones at the top. Operators on the same line have equal
-precedence, in which case associativity decides grouping.
+
+The table below lists operators in order of precedence, from highest to lowest. Operators on the same line have equal precedence.
 
 | Precedence | Operators                 | Operator type                       | Associativity   |
 |------------|---------------------------|-------------------------------------|-----------------|
@@ -60,3 +32,21 @@ precedence, in which case associativity decides grouping.
 | 20         | `likely`, `unlikely`      | Branch prediction                   | right-to-left   |
 | 21         | `?`                       | Logical                             | right-to-left   |
 | 21         | `=>`                      | Closure Arrow                       | right-to-left   |
+
+
+## Associativity
+
+Associativity determines how operators with equal precedence are grouped. It specifies the order in which operators are evaluated when they have the same precedence. The associativity is either left-to-right or right-to-left.
+
+For example, `-` is left-associative, so `1 - 2 - 3` is grouped as `(1 - 2) - 3` and evaluates to `-4`. On the other hand, `=` is right-associative, so `let a = b = c` is grouped as `let a = (b = c)`.
+
+### Non-Associative Operator
+In Zephir, `new` is a non-associative operator. This means that using it consecutively without explicit grouping is not allowed. For instance:
+
+```zep
+new new Foo();
+```
+
+This expression is illegal in Zephir because the `new` operator is non-associative.
+
+Understanding operator precedence and associativity is essential for writing correct and predictable expressions in Zephir. Explicitly using parentheses when needed can improve code readability.

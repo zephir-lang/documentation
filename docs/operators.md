@@ -1,11 +1,10 @@
 # Operators
 
-This article describes Zephir's operators. For precedence, you can check the [Operator Precedence][operator-precedence] article.
-
-Zephir's operators are similar to the ones in PHP, and inherit some of their behaviors.
+Zephir, a language designed for building PHP extensions, comes with a set of [operators][operator-precedence] inherited from PHP, each serving specific purposes. Let's delve into the various operator categories and examples:
 
 ## Arithmetic Operators
-The following operators are supported:
+
+Zephir supports standard arithmetic operators:
 
 | Operation       | Example    |
 |-----------------|------------|
@@ -16,8 +15,14 @@ The following operators are supported:
 | Division        | `a / b`    |
 | Modulus         | `a % b`    |
 
+```zephir
+let result = -a + b * (c - d) / e % f;
+```
+
+
 ## Bitwise Operators
-The following operators are supported:
+
+These operators work with individual bits:
 
 | Operation           | Example    |
 |---------------------|------------|
@@ -36,9 +41,10 @@ if a & SOME_FLAG {
 }
 ```
 
-Learn more about comparison of dynamic variables in the [php manual](https://www.php.net/manual/en/language.operators.comparison.php).
+Learn more about comparison of dynamic variables in the [php manual][dynamic_variables].
 
 ## Comparison Operators
+
 Comparison operators depend on the type of variables compared. For example, if both compared operands are dynamic variables, the behavior is the same as in PHP:
 
 | Example    | Operation                 | Description                                                       |
@@ -68,7 +74,8 @@ if a == b {
 ```
 
 ## Logical Operators
-The following operators are supported:
+
+Dealing with boolean values:
 
 | Operation  | Example    |
 |------------|------------|
@@ -86,16 +93,18 @@ return 1;
 ```
 
 ## Ternary Operator
-Zephir supports the ternary operator available in C or PHP:
+
+Equivalent to C or PHP:
 
 ```zephir
-let b = a == 1 ? "x" : "y"; // b is set to "x" if a is equal to 1, otherwise "y" is assigned as the value
+// b is set to "x" if a is equal to 1, otherwise "y" is assigned as the value
+let b = a == 1 ? "x" : "y"; 
 ```
 
 ## Special Operators
-The following operators are supported:
 
 ### Empty
+
 This operator allows checking whether an expression is empty. 'Empty' means the expression is `null`, is an empty string, or an empty array:
 
 ```zephir
@@ -111,6 +120,7 @@ if !empty someVar {
 ```
 
 ### Fetch
+
 'Fetch' is an operator that reduces a common operation in PHP into a single instruction:
 
 ```php
@@ -133,6 +143,7 @@ if fetch value, myArray[key] {
 'Fetch' only returns `true` if the 'key' is a valid item in the array, and only in that case is 'value' populated.
 
 ### Isset
+
 This operator checks whether a property or index has been defined in an array or object:
 
 ```zephir
@@ -148,9 +159,10 @@ Using `isset` as a return expression:
 return isset this->{someProperty};
 ```
 
-Note that `isset` in Zephir works more like PHP's function [array_key_exists](https://www.php.net/manual/en/function.array-key-exists.php), `isset` in Zephir returns true even if the array index or property is null.
+Note that `isset` in Zephir works more like PHP's function [array_key_exists][array_key_exists], `isset` in Zephir returns true even if the array index or property is null.
 
 ### Typeof
+
 This operator checks a variable's type. 'typeof' can be used with a comparison operator:
 
 ```zephir
@@ -168,6 +180,7 @@ return typeof str;
 **Be careful**, if you want to check whether an object is 'callable', you always have to use `typeof` as a comparison operator, not a function.
 
 ### Type Hints
+
 Zephir always tries to check whether an object implements methods and properties called/accessed on a variable that is inferred to be an object:
 
 ```zephir
@@ -196,7 +209,8 @@ o->myMethod();
 ```
 
 ### Branch Prediction Hints
-What is branch prediction? Check this [article](https://igoro.com/archive/fast-and-slow-if-statements-branch-prediction-in-modern-processors/) or refer to the [Wikipedia article](https://en.wikipedia.org/wiki/Branch_predictor). In environments where performance is very important, it may be useful to introduce these hints.
+
+What is branch prediction? Check this [article][article] or refer to the [Wikipedia article][wikipedia_article]. In environments where performance is very important, it may be useful to introduce these hints.
 
 Consider the following example:
 
@@ -225,3 +239,7 @@ for path in this->_paths {
 ```
 
 [operator-precedence]: operator-precedence.md
+[dynamic_variables]: https://www.php.net/manual/en/language.operators.comparison.php
+[article]: https://igoro.com/archive/fast-and-slow-if-statements-branch-prediction-in-modern-processors/
+[wikipedia_article]: https://en.wikipedia.org/wiki/Branch_predictor
+[array_key_exists]: https://www.php.net/manual/en/function.array-key-exists.php

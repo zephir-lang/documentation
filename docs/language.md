@@ -1,16 +1,12 @@
----
-layout: default
-language: 'en'
-version: '0.12'
----
-
 # Basic Syntax
-In this chapter, we'll discuss the organization of files and namespaces, variable declarations, miscellaneous syntax conventions, and a few other general concepts.
+
+In this section, we'll delve into the fundamental aspects of Zephir's syntax, covering topics such as file and namespace organization, variable declarations, syntax conventions, and other essential concepts.
 
 ## Organizing Code in Files and Namespaces
-In PHP, you can place code in any file, without a specific structure. In Zephir, every file must contain a class (and just one class). Every class must have a namespace, and the directory structure must match the names of the classes and namespaces used. (This is similar to PSR-4 autoloading conventions, except it's enforced by the language itself.)
 
-For example, given the following structure, the classes in each file must be:
+Zephir introduces a structured approach to code organization. Each file should contain only one class, and every class must be within a namespace. The directory structure aligns with class and namespace names, similar to PSR-4 autoloading conventions.
+
+For example:
 
 ```bash
 mylibrary/
@@ -41,17 +37,19 @@ class Exception extends \Exception
 }
 ```
 
-Zephir will raise a compiler exception if a file or class is not located in the expected file, or vice versa.
+The file system structure must mirror the namespaces, ensuring consistency.
 
 ## Instruction separation
-You may have already noticed that there were very few semicolons in the code examples in the previous chapter. You can use semicolons to separate statements and expressions, as in Java, C/C++, PHP, and similar languages:
+
+In Zephir, semicolons can be used to separate statements and expressions, akin to Java, C/C++, and PHP:
 
 ```zephir
 myObject->myMethod(1, 2, 3); echo "world";
 ```
 
 ## Comments
-Zephir supports 'C'/'C++' comments. These are one line comments with `// ...`, and multi line comments with `/* ... */`:
+
+Zephir supports 'C'/'C++' style comments - single-line with `// ...` and multi-line with `/* ... */`:
 
 ```zephir
 // this is a one line comment
@@ -61,11 +59,10 @@ Zephir supports 'C'/'C++' comments. These are one line comments with `// ...`, a
  */
 ```
 
-In most languages, comments are simply text ignored by the compiler/interpreter. In Zephir, multi-line comments are also used as docblocks, and they're exported to the generated code, so they're part of the language!
-
-If a docblock is not located where it is expected, the compiler will throw an exception.
+Multi-line comments also serve as docblocks, influencing the generated code and providing documentation.
 
 ## Variable Declarations
+
 In Zephir, all variables used in a given scope must be declared. This gives important information to the compiler to perform optimizations and validations. Variables must be unique identifiers, and they cannot be reserved words.
 
 ```zephir
@@ -78,7 +75,7 @@ var b;
 var c;
 ```
 
-Variables can optionally have an initial compatible default value:
+Variables can have optional initial default values:
 
 ```zephir
 // Declaring variables with default values
@@ -94,7 +91,8 @@ var somevalue, someValue, SomeValue;
 ```
 
 ## Variable Scope
-All variables declared are locally scoped to the method where they were declared:
+
+Variables declared are locally scoped to the method where they are defined:
 
 ```zephir
 namespace Test;
@@ -116,7 +114,8 @@ class MyClass
 ```
 
 ## Super Globals
-Zephir does not support global variables - accessing global variables from the PHP userland is not allowed. However, you can access PHP's super-globals as follows:
+
+Global variables are not supported in Zephir. However, access to PHP's super-globals is possible:
 
 ```zephir
 // Getting a value from _POST
@@ -127,17 +126,8 @@ let requestMethod = _SERVER["REQUEST_METHOD"];
 ```
 
 ## Local Symbol Table
-Every method or context in PHP has a symbol table that allows you to write variables in a very dynamic way:
 
-```php
-<?php
-
-$b = 100;
-$a = "b";
-echo $$a; // prints 100
-```
-
-Zephir does not implement this feature, since all variables are compiled down to low-level variables, and there is no way to know which variables exist in a specific context. If you want to create a variable in the current PHP symbol table, you can use the following syntax:
+Zephir does not implement the dynamic variable behavior found in PHP. The language does not have a local symbol table, as all variables are compiled into low-level variables without context awareness. To create a variable in the PHP symbol table, a specific syntax is used:
 
 ```zephir
 // Set variable $name in PHP

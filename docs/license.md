@@ -1,9 +1,3 @@
----
-layout: default
-language: 'en'
-version: '0.12'
----
-
 # License
 
 MIT License

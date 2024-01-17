@@ -1,9 +1,3 @@
----
-layout: default
-language: 'en'
-version: '0.12'
----
-
 # Types
 Zephir is both dynamically and statically typed. In this chapter we highlight the supported types and their behaviors.
 
@@ -48,9 +42,10 @@ They can have eight types:
 | `resource`        | A resource holds a reference to an external resource.                        |
 | `string`          | A string is series of characters, where a character is the same as a byte.   |
 
-Check more info about these types in the [PHP manual](https://www.php.net/manual/en/language.types.php).
+Check more info about these types in the [PHP manual][types].
 
 ### Array
+
 The array implementation in Zephir is basically the same as in PHP: ordered maps optimized for several different uses; it can be treated as an array, list (vector), hash table (an implementation of a map), dictionary, collection, stack, queue, and probably more. As array values can be other arrays, trees and multidimensional arrays are also possible.
 
 The syntax to define arrays is slightly different than in PHP:
@@ -75,6 +70,7 @@ let myHash = ["first": 7.0, "second": "some string", "third": false];
 ```
 
 ### Boolean
+
 A boolean expresses a truth value. It can be either `true` or `false`:
 
 ```zephir
@@ -82,6 +78,7 @@ var a = false, b = true;
 ```
 
 ### Float/Double
+
 Floating-point numbers (also known as "floats", "doubles", or "real numbers"). Floating-point literals are expressions with one or more digits, followed by a period (.), followed by one or more digits. The size of a float is platform-dependent, although a maximum of ~1.8e308 with a precision of roughly 14 decimal digits is a common value (the 64 bit IEEE format).
 
 ```zephir
@@ -91,6 +88,7 @@ var number = 5.0, b = 0.014;
 Floating point numbers have limited precision. Although it depends on the system, Zephir uses the same IEEE 754 double precision format used by PHP, which will give a maximum relative error due to rounding in the order of 1.11e-16.
 
 ### Integer
+
 Integer numbers. The size of an integer is platform-dependent, although a maximum value of about two billion is the usual value (that's 32 bits signed). 64-bit platforms usually have a maximum value of about 9E18. PHP does not support unsigned integers so Zephir has this restriction too:
 
 ```zephir
@@ -98,6 +96,7 @@ var a = 5, b = 10050;
 ```
 
 ### Integer overflow
+
 Contrary to PHP, Zephir does not automatically check for integer overflows. Like in C, if you are doing operations that may return a big number, you should use types such as `unsigned long` or `float` to store them:
 
 ```zephir
@@ -105,6 +104,7 @@ unsigned long my_number = 2147483648;
 ```
 
 ### Object
+
 Zephir allows to instantiate, manipulate, call methods, read class constants, etc from PHP objects:
 
 ```zephir
@@ -113,6 +113,7 @@ let myObject = new \stdClass(),
 ```
 
 ### String
+
 A `string` is series of characters, where a character is the same as a byte. As PHP, Zephir only supports a 256-character set, and hence does not offer native Unicode support.
 
 ```zephir
@@ -145,6 +146,7 @@ echo "hello: " . name;
 ```
 
 ## Static Types
+
 Static typing allows the developer to declare and use some variable types available in C. Variables can't change their type once they're declared as static types. However, they allow the compiler to do a better optimization job. The following types are supported:
 
 | Type                  | Description                                                                     |
@@ -161,6 +163,7 @@ Static typing allows the developer to declare and use some variable types availa
 | `unsigned long`       | Same as `long`, but unsigned.                                                   |
 
 ### Boolean
+
 A `boolean` expresses a truth value. It can be either `true` or `false`. Contrary to the dynamic behavior detailed above, static `boolean` types remain `boolean` (`true` or `false`) no mater what value is assigned to them:
 
 ```zephir
@@ -187,6 +190,7 @@ let a = "hello";
 ```
 
 ### Char/Unsigned Char
+
 `char` variables are the smallest addressable unit of the machine that can contain the basic character set (generally 8 bits). A `char` variable can be used to store any character in a string:
 
 ```zephir
@@ -206,6 +210,7 @@ let ch = 'Z';
 ```
 
 ### Integer/Unsigned Integer
+
 `integer` values are like the `integer` member in dynamic values. Values assigned to integer variables remain integer:
 
 ```zephir
@@ -289,6 +294,7 @@ let a = 2147483648,
 ```
 
 ### Long/Unsigned Long
+
 `long` variables are twice bigger than `integer` variables, thus they can store bigger numbers. As with `integer`, values assigned to `long` variables are automatically casted to this type:
 
 ```zephir
@@ -372,6 +378,7 @@ let a = 4294967296,
 ```
 
 ### String
+
 A string is series of characters, where a character is the same as a byte. As in PHP it only supports a 256-character set, and hence does not offer native Unicode support.
 
 When a variable is declared `string` it never changes its type:
@@ -399,3 +406,5 @@ let a = 'A';
 ```zephir
 let a = null;
 ```
+
+[types]: https://www.php.net/manual/en/language.types.php
