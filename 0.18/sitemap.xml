@@ -2,127 +2,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.zephir-lang.com/0.18/arrays/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/builtin-methods/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/closures/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/command-line/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/config/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/control-structures/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/exceptions/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/functions/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/globals/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/installation/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/introduction/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/language/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/license/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/lifecycle/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/motivation/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/oop/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/operator-precedence/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/operators/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/optimizations/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/optimizers/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/phpinfo/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/static-analysis/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/tutorial/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/types/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.zephir-lang.com/0.18/warnings/</loc>
-         <lastmod>2024-01-17</lastmod>
+         <lastmod>2024-03-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
