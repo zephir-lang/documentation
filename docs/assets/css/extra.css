@@ -11,6 +11,6 @@
     color: #699cfa !important;
 }
 
-[data-md-color-scheme="slate"] .md-nav__link a:hover {
+[data-md-color-scheme="slate"] .md-nav__link:hover {
     color: #699cfa !important;
 }
