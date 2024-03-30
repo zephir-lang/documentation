@@ -69,7 +69,7 @@ theme:
   font:
     text: Titillium Web
     code: Source Code Pro
-  favicon: assets/images/favicon.ico
+  favicon: assets/images/favicon.png
   logo: assets/images/logo.svg
 
 # Plugins
