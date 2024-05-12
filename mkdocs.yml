@@ -170,3 +170,4 @@ nav:
     - Static analysis: static-analysis.md
     - Optimizations: optimizations.md
     - Compiler warnings: warnings.md
+  - Discussions: https://github.com/orgs/zephir-lang/discussions
