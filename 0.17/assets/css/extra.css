@@ -1,0 +1,24 @@
+:root {
+    --md-primary-fg-color:        #273646;
+    --md-primary-fg-color--light: #4b6786;
+    --md-primary-fg-color--dark: #0c1015;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+    color: #699cfa !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__item .md-nav__link--active:hover {
+    color: #699cfa !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__link:hover {
+    color: #699cfa !important;
+}
+
+.md-header__button.md-logo {
+    background-color: #ffffff;
+    border-radius: 2px;
+    margin-top: 10px;
+    padding: .25rem !important;
+}
