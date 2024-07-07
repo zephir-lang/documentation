@@ -23,7 +23,7 @@ If everything is well, you should see the following help (or something very simi
 /____/\___/ .___/_/ /_/_/_/
          /_/
 
-Zephir 0.18.0 by the Phalcon Team
+Zephir 0.17.0 by the Phalcon Team
 Thanks to the work by: Andres Gutierrez and Serghei Iakovlev (source)
 
 Usage:
