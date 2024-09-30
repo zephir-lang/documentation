@@ -720,7 +720,7 @@ nav:
     - Operators: operators.md
     - Operator Precedence: operator-precedence.md
     - Arrays: arrays.md
-    - Classed and Objects: oop.md
+    - Classes and Objects: oop.md
     - Built-in methods: builtin-methods.md
     - Control structures: control-structures.md
     - Exceptions: exceptions.md
