@@ -3,6 +3,7 @@
     --md-primary-fg-color--light: #4b6786;
     --md-primary-fg-color--dark: #0c1015;
 }
+
 [data-md-color-scheme="slate"] .md-typeset a:hover {
     color: #699cfa !important;
 }
