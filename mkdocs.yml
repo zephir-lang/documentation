@@ -658,7 +658,7 @@ plugins:
 # Additional configuration
 extra:
   version:
-    default: 0.17
+    default: 0.18
     provider: mike
   annotate:
     json: [ .s2 ]

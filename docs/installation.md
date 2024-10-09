@@ -83,7 +83,7 @@ You can also download the latest release PHAR from [GitHub][zephir_releases]. Pl
 Clone the latest tag from GitHub, install dependencies, and run Zephir from there:
 
 ```bash
-git clone --depth 1 -b $(git ls-remote https://github.com/zephir-lang/zephir 0.17.* | sort -t/ -k3 -Vr | head -n1 | awk -F/ '{ print $NF }') https://github.com/zephir-lang/zephir
+git clone --depth 1 -b $(git ls-remote https://github.com/zephir-lang/zephir 0.18.* | sort -t/ -k3 -Vr | head -n1 | awk -F/ '{ print $NF }') https://github.com/zephir-lang/zephir
 composer install
 ```
 
