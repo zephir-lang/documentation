@@ -156,6 +156,32 @@ for key, _ in data {
 }
 ```
 
+##### Traversing Iterator objects
+
+A bare `for value in expr` traverses a hash (array or hash-like zval) — it does **not**
+delegate to a user-defined `\Iterator` implementation's `rewind()`/`valid()`/`current()`/
+`next()` methods. Iterating an instance of a class that implements `\Iterator`
+(or `\IteratorAggregate`) requires wrapping the expression with the built-in
+`iterator(...)`:
+
+```zephir
+public function consume(<\Iterator> collection)
+{
+    var item;
+
+    for item in iterator(collection) {
+        this->add(item);
+    }
+}
+```
+
+Without the `iterator(...)` wrapper the compiler emits hash-traversal code and you
+will hit a runtime error such as
+`The argument is not initialized or iterable()` at the `for` site. PHP-level
+`foreach` over the same object from userland works because the engine itself
+dispatches through the Iterator interface; inside Zephir you must opt in
+explicitly.
+
 ### Break Statement
 
 `break` ends execution of the current `while`, `for` or `loop` statement:
