@@ -263,6 +263,44 @@ class MyClass
 
 When the code is compiled, those methods are exported as real methods, but you don't have to write them manually.
 
+#### How shortcut method names are derived from the property name
+
+The accessor names emitted by `get` / `set` / `toString` follow two simple rules that aren't obvious from the syntax:
+
+1. **A single leading underscore is stripped from the property name** before the rest is camelized. This matches the Phalcon / C++-ish convention of marking non-public state with a leading `_`. Note: only **one** underscore is stripped, additional leading underscores survive and become word boundaries in step 2.
+2. **Underscores inside the name become word boundaries**, each one is consumed and the following letter is uppercased.
+
+Worked examples:
+
+| Property declaration          | Generated getter    | Generated setter                 |
+|-------------------------------|---------------------|----------------------------------|
+| `myProperty { get, set }`     | `getMyProperty()`   | `setMyProperty(myProperty)`      |
+| `someProperty { get, set }`   | `getSomeProperty()` | `setSomeProperty(someProperty)`  |
+| `_value { get, set }`         | `getValue()`        | `setValue(value)`                |
+| `_default_value { get, set }` | `getDefaultValue()` | `setDefaultValue(default_value)` |
+| `my_field { get }`            | `getMyField()`      | —                                |
+| `__internal { get }`          | `getInternal()`     | —                                |
+
+Note that the `set` shortcut emits a parameter named after the property *after the single leading-underscore strip*. So `set_value(value)` for `_value`, not `set_value(_value)`. The parameter name keeps any *internal* underscores intact.
+
+#### `toString` and `__toString`
+
+Both spellings are accepted in the shortcut list and produce the same `public function __toString(): string` method that returns the underlying property:
+
+```zep
+class A
+{
+    protected name { toString };       // accepted
+}
+
+class B
+{
+    protected name { __toString };     // also accepted — identical effect
+}
+```
+
+The compiler always emits the PHP-canonical `__toString` name regardless of which form you wrote, and the return type is fixed to `string` so the generated method satisfies PHP's `Stringable` contract.
+
 ### Return Type Hints
 Methods in classes and interfaces can have "return type hints". These will provide useful extra information to the compiler to inform you about errors in your application. Consider the following example:
 
