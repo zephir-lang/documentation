@@ -200,6 +200,8 @@ Any additional libraries you want to add to the compilation process:
 }
 ```
 
+This is typically paired with [`extra-cflags`](#extra-cflags) for the header search path and a `%{ #include ... }%` [cblock](inline-c.md) inside the Zephir source that actually uses the library.
+
 ## extra-sources
 
 Any additional files you want to add to the compilation process - the search directory is relative to the `ext` folder of your project:
@@ -211,6 +213,8 @@ Any additional files you want to add to the compilation process - the search dir
     ]
 }
 ```
+
+See the [Inline C and external libraries](inline-c.md) page for how `%{ … }%` cblocks reference symbols declared in these extra source files.
 
 ## globals
 
