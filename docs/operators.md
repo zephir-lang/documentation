@@ -110,6 +110,45 @@ if !empty someVar {
 }
 ```
 
+#### Differences from PHP's `empty()`
+
+Zephir's `empty` operator does **not** behave like PHP's `empty()` language construct on a missing array index or undefined object property. PHP's `empty()` is special-cased in the VM: it suppresses the `Undefined index` / `Undefined property` notice that would otherwise fire when the operand doesn't exist. Zephir's `empty` always fully evaluates its operand first and then checks the resulting value, so a missing key triggers PHP's standard notice before `empty` is even consulted:
+
+```zephir
+var definition = ["foo": 1];
+
+// PHP `empty($definition["limit"])` is silent and returns true.
+// Zephir's `empty definition["limit"]` emits:
+//   Notice: Undefined index: limit ...
+// and only then evaluates to true.
+if !empty definition["limit"] {
+    // ...
+}
+```
+
+The recommended patterns when the operand may be missing are:
+
+- Guard with `isset` first:
+
+  ```zephir
+  if isset definition["limit"] && !empty definition["limit"] {
+      // ...
+  }
+  ```
+
+- Use the [`fetch`](#fetch) operator. It combines "the key exists" with "bind the value to a local", which is usually what code reaching for `empty` actually wants:
+
+  ```zephir
+  var limit;
+  if fetch limit, definition["limit"] {
+      if !empty limit {
+          // ...
+      }
+  }
+  ```
+
+See [issue #2062](https://github.com/zephir-lang/zephir/issues/2062) for the original discussion.
+
 ### Fetch
 'Fetch' is an operator that reduces a common operation in PHP into a single instruction:
 
