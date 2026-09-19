@@ -28,3 +28,7 @@ You can add more directives by adding the following configuration to the `config
 This information will be shown as follows:
 
 ![](assets/images/content/info.png)
+
+## Adding INI directives
+
+INI directives come from the `globals` section of `config.json` rather than from a section of their own: every scalar extension global is registered as a directive and listed by `phpinfo()` automatically. See the [extension globals](globals.md#ini-directives) chapter for the directive names, the `ini-entry` key that overrides them, and which types are covered.

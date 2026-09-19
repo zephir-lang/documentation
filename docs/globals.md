@@ -103,3 +103,69 @@ let myOption = "someOption";
 // will throw a compiler exception
 let someOption = globals_get(myOption);
 ```
+
+## INI directives
+
+Every scalar extension global is also registered as a [php.ini directive](https://php.net/manual/en/configuration.file.php). It shows up in `phpinfo()`, it can be read with `ini_get()`, and the value given in `php.ini` (or on the command line with `-d`) becomes the global's starting value:
+
+```ini
+; php.ini
+test.number_times = 25
+```
+
+```zephir
+// 25, not the 10 declared as the default in config.json
+let times = globals_get("number_times");
+```
+
+The directive is named after the extension and the global, so `number_times` in an extension whose `namespace` is `test` becomes `test.number_times`, and the compound global `some_component.my_setting_1` becomes `test.some_component.my_setting_1`.
+
+Use the optional `ini-entry` key to choose a different name, or to restrict where the directive may be changed from:
+
+```json
+{
+    "globals": {
+        "number_times": {
+            "type": "int",
+            "default": 10,
+            "ini-entry": {
+                "name": "test.times",
+                "scope": "PHP_INI_SYSTEM"
+            }
+        }
+    }
+}
+```
+
+`scope` is any of PHP's [directive scopes](https://php.net/manual/en/configuration.changes.modes.php). It defaults to `PHP_INI_ALL`, and a directive left at that scope can also be changed while the script runs; the global follows immediately:
+
+```php
+// number_times has the default scope, so this is allowed
+ini_set('test.number_times', '5');
+// globals_get("number_times") is now 5
+```
+
+Narrowing the scope to `PHP_INI_SYSTEM`, as in the example above, makes `ini_set()` fail and leaves the global alone.
+
+Which types get a directive:
+
+| Type | php.ini value | Notes |
+|------|---------------|-------|
+| `bool` | `On`/`Off`, `1`/`0`, `true`/`false` | Shown as `On` or `Off` in `phpinfo()` |
+| `int`, `long` | an integer | |
+| `uint`, `ulong` | a non-negative integer | A negative value is refused: at startup the global falls back to its `default`, and at runtime `ini_set()` returns `false` and changes nothing |
+| `double` | a float | |
+| `char`, `uchar` | a string; the first byte is used | `globals_get` returns the character code, not a one-character string |
+| `string` | any string | |
+| `hash` | - | Has no directive: an INI value is always a string |
+
+### Precedence and lifetime
+
+Three things can set a global, and they do not all last as long:
+
+1. The `default` in `config.json` is the value the directive itself carries, and applies when `php.ini` is silent.
+2. A value in `php.ini` replaces that default when the extension starts up.
+3. `ini_set()` and `globals_set()` change the global for the rest of the current request only.
+
+At the start of every request a global goes back to the value the directive holds, so nothing a request wrote with `globals_set()` can be seen by the next one. A global declared with `"module": true` is exempt: it is set up once per process and keeps whatever it was last set to.
+

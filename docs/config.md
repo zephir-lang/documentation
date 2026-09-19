@@ -218,7 +218,9 @@ See the [Inline C and external libraries](inline-c.md) page for how `%{ … }%` 
 
 ## globals
 
-Extension globals available. Check the [globals][globals] chapter for more information.
+Extension globals available. Each one is also registered as a php.ini directive; check the [globals][globals] chapter for more information, including the optional `ini-entry` key that renames a directive or narrows where it can be changed from.
+
+Zephir reads only the settings listed on this page. Anything else in `config.json` is kept but ignored, and reported as a warning when you build.
 
 ```json
 {
