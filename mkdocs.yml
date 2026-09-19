@@ -163,7 +163,7 @@ nav:
     - Custom optimizers: optimizers.md
     - Configuration: config.md
     - Command Line: command-line.md
-    - Contiguous buffer: buffer.md
+    - Buffers: buffers.md
   - Advanced:
     - Lifecycle hooks: lifecycle.md
     - Extension globals: globals.md
@@ -172,6 +172,4 @@ nav:
     - Optimizations: optimizations.md
     - Compiler warnings: warnings.md
     - Inline C and external libraries: inline-c.md
-    - Buffer performance: buffer-performance.md
-    - Buffer internals: buffer-internals.md
   - Discussions: https://github.com/orgs/zephir-lang/discussions
